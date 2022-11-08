@@ -16,3 +16,11 @@ img {
   display: block;
   max-width: 100%;
 }
+.field {
+  display: inline-block;
+  font-size: 28px;
+}
+.value {
+  font-size: 55px;
+  color: rgb(39, 39, 99);
+}

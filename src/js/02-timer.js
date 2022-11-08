@@ -10,6 +10,12 @@ const dataSeconds = document.querySelector("[data-seconds]");
 
 startBtn.disabled = true;
 
+let timeLeftMs = 0;
+
+function addLeadingZero(value){
+    return value.padStart(2, 0);
+  }
+
 function convertMs(ms) {
     const second = 1000;
     const minute = second * 60;
@@ -39,7 +45,25 @@ const options = {
       }else{
         startBtn.disabled = false;
         startBtn.addEventListener("click", () =>{
-            console.log(convertMs(selectedDates[0].getTime() - (new Date().getTime())));
+            timeLeftMs = selectedDates[0].getTime() - new Date().getTime();
+            console.log(timeLeftMs);
+
+            const timerId = setInterval(() =>{
+                timeLeftMs -= 1000;
+                console.log(convertMs(timeLeftMs));
+                console.log(timeLeftMs);
+
+                const {days, hours, minutes, seconds} = convertMs(timeLeftMs);
+       
+                dataDays.textContent = addLeadingZero(String(days));
+                dataHours.textContent = addLeadingZero(String(hours));
+                dataMinutes.textContent = addLeadingZero(String(minutes));;
+                dataSeconds.textContent = addLeadingZero(String(seconds));
+
+                if(days === 0 && hours === 0 && minutes === 0 && seconds === 0)
+                    clearInterval(timerId);
+            },1000);
+
         })
       }
     },
