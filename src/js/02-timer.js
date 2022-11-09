@@ -46,12 +46,12 @@ const options = {
         startBtn.disabled = false;
         startBtn.addEventListener("click", () =>{
             timeLeftMs = selectedDates[0].getTime() - new Date().getTime();
-            console.log(timeLeftMs);
+            //console.log(timeLeftMs);
 
             const timerId = setInterval(() =>{
                 timeLeftMs -= 1000;
-                console.log(convertMs(timeLeftMs));
-                console.log(timeLeftMs);
+                //console.log(convertMs(timeLeftMs));
+                //console.log(timeLeftMs);
 
                 const {days, hours, minutes, seconds} = convertMs(timeLeftMs);
        
